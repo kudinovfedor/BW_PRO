@@ -28,12 +28,12 @@ const getFullDate = () => {
 };
 
 gulp.task('svg', () => {
-    return gulp.src(`${themeName}/assets/img/svg/*.svg`)
+    return gulp.src(`assets/img/svg/*.svg`)
         .pipe(plumber())
         .pipe(svgmin({js2svg: {pretty: false}}))
         .pipe(svgstore({inlineSvg: true}))
         .pipe(rename({basename: 'svg', prefix: '', suffix: '-sprite', extname: '.svg'}))
-        .pipe(gulp.dest(`${themeName}/assets/img/`));
+        .pipe(gulp.dest(`assets/img/`));
 });
 
 gulp.task('sass', () => {

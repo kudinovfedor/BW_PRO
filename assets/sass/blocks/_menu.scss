@@ -312,79 +312,76 @@
 }
 
 .hamburger {
-    display: none;
+    display: inline-block;
     vertical-align: middle;
     -webkit-tap-highlight-color: transparent;
     @include touch-action(manipulation);
-    @include transition(.2s ease-out);
 
     &:focus {
         outline: 0;
-        @include box-shadow(0 0 0 4px rgba($hamburger-color, .2));
+
+        .hamburger-inner {
+            &,
+            &::before,
+            &::after {
+                width: 100%;
+            }
+        }
     }
 
     &,
     &[type="button"] {
         cursor: pointer;
         border: 0;
-        padding: 9px 5px;
+        padding: 10px 3px;
         background-color: transparent;
     }
 
     &-box {
+        position: relative;
         display: block;
-        width: 30px;
-        padding: 9px 0;
+        width: 33px;
+        height: 19px;
     }
 
     &-inner {
-        position: relative;
-        @include transition(background-color 0s ease-out $hamburger-delay);
-
         &,
         &::before,
         &::after {
             display: block;
             width: 100%;
-            height: 2px;
+            height: 1px;
             background-color: $navHamburgerMobileColor;
+            @include transition(width $hamburger-duration ease-out);
         }
 
         &::before,
         &::after {
             content: '';
             position: absolute;
-            left: 0;
-            @include transition(bottom $hamburger-duration ease-out $hamburger-delay, top $hamburger-duration ease-out $hamburger-delay, transform $hamburger-duration ease-out);
+            right: 0;
         }
 
         &::before {
-            bottom: $hamburger-offset;
+            top: $hamburger-offset;
+            width: 80%;
         }
 
         &::after {
-            top: $hamburger-offset;
+            top: ($hamburger-offset * 2);
+            width: 65%;
         }
     }
 }
 
 .is-active {
     .hamburger-inner {
-        background-color: transparent;
-
-        &::before,
-        &::after {
-            @include transition(bottom $hamburger-duration ease-out, top $hamburger-duration ease-out, transform $hamburger-duration ease-out $hamburger-delay);
-        }
-
-        &::before {
-            bottom: 0;
-            @include transform(rotate(45deg));
-        }
-
-        &::after {
-            top: 0;
-            @include transform(rotate(-45deg));
+        .hamburger-inner {
+            &,
+            &::before,
+            &::after {
+                width: 100%;
+            }
         }
     }
 }

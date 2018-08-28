@@ -222,7 +222,7 @@ if (!function_exists('get_social')) {
         $_socials = [
             'vk' => [
                 'url' => get_theme_mod('bw_social_vk'),
-                'text' => 'Vk',
+                'text' => 'VK',
                 'icon' => 'fab fa-vk',
             ],
             'twitter' => [
@@ -232,12 +232,12 @@ if (!function_exists('get_social')) {
             ],
             'facebook' => [
                 'url' => get_theme_mod('bw_social_facebook'),
-                'text' => 'Facebook',
+                'text' => 'FB',
                 'icon' => 'fab fa-facebook-f',
             ],
             'linkedin' => [
                 'url' => get_theme_mod('bw_social_linkedin'),
-                'text' => 'Linkedin',
+                'text' => 'IN',
                 'icon' => 'fab fa-linkedin-in',
             ],
             'instagram' => [
@@ -247,7 +247,7 @@ if (!function_exists('get_social')) {
             ],
             'google-plus' => [
                 'url' => get_theme_mod('bw_social_google_plus'),
-                'text' => 'Google Plus',
+                'text' => 'G+',
                 'icon' => 'fab fa-google-plus-g',
             ],
             'youtube' => [
