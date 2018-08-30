@@ -3,7 +3,7 @@
  * All the functions are in the PHP pages in the `inc/` folder.
  */
 
-//show_admin_bar(false);
+show_admin_bar(false);
 
 require_once locate_template('/inc/helpers.php');
 require_once locate_template('/inc/admin.php');

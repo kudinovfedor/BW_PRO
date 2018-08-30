@@ -6,6 +6,7 @@
         console.info('Сайт разработан маркетинговым агентством BRAIN WORKS');
 
         var html = $('html');
+        var slider = $('.js-slider');
         var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
         if (isMobile) {
@@ -14,12 +15,70 @@
 
         html.removeClass('no-js').addClass('js');
 
+
+        if (slider.length) {
+            slider
+                .on('init', function () {
+                    var active = $(this).find('.slick-active');
+                    active.first().addClass('is-first');
+                    active.last().addClass('is-last');
+                })
+                .slick({
+                    'infinite': false,
+                    'arrows': true,
+                    'dots': false,
+                    'slidesToScroll': 1,
+                    'slidesToShow': 5,
+                    'draggable': false,
+                    'prevArrow': '.js-slick-prev',
+                    'nextArrow': '.js-slick-next',
+                    'responsive': [
+                        {
+                            'breakpoint': 1400,
+                            'settings': {
+                                'slidesToShow': 4,
+                            }
+                        },
+                        {
+                            'breakpoint': 1024,
+                            'settings': {
+                                'slidesToShow': 3,
+                            }
+                        },
+                        {
+                            'breakpoint': 768,
+                            'settings': {
+                                'slidesToShow': 2,
+                            }
+                        },
+                        {
+                            'breakpoint': 480,
+                            'settings': {
+                                'slidesToShow': 1,
+                            }
+
+                        }
+                    ],
+                })
+                .on('beforeChange', function (slick, currentSlide, nextSlide) {
+                    $(this).find('.slick-active').removeClass('is-first is-last');
+                })
+                .on('afterChange', function (slick, currentSlide) {
+                    var active = $(this).find('.slick-active');
+                    active.first().addClass('is-first');
+                    active.last().addClass('is-last');
+                });
+        }
+
         // Stick Footer
-        var footerHeight = $('.footer').outerHeight() + 20;
-        $('.page-wrapper').css('padding-bottom', footerHeight + 'px');
+        /*var footerHeight = $('.footer').outerHeight() + 20;
+        $('.page-wrapper').css('padding-bottom', footerHeight + 'px');*/
 
         // Scroll Top
         scrollTop('.js-scroll-top');
+
+        // ScrollTo
+        scrollTo('.js-scroll-down', 500);
 
         // On Copy
         $(document).on('copy', addLink);
@@ -198,6 +257,31 @@
                 el.removeClass('is-visible');
             }
         });
+    }
+
+    /**
+     * Smooth scrolling to element
+     *
+     * @example
+     * scrollTo('body');
+     * @author Fedor Kudinov <brothersrabbits@mail.ru>
+     * @param {(string|Object)} id - selected item to perform the a clicked
+     * @param {(number|string)} [scrollDuration=1000] - determining how long the animation will run
+     */
+    function scrollTo(id, scrollDuration) {
+
+        var el = $(id), duration = scrollDuration || 1000;
+
+        el.on('click', function () {
+            var _target = $(this).data('target');
+            var el = $('#' + _target);
+
+            $('html, body').animate({scrollTop: $(el).offset().top}, duration);
+
+            return false;
+
+        });
+
     }
 
     /**

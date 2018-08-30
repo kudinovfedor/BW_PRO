@@ -1,6 +1,9 @@
-</div><!-- .page-wrapper end-->
+<?php if (!is_front_page()) { ?>
+    </div><!-- .page-wrapper end-->
+<?php } ?>
 
-<footer class="footer">
+<?php /*
+ <footer class="footer">
     <?php if (is_active_sidebar('footer-widget-area')) : ?>
         <div class="pre-footer">
             <div class="container">
@@ -19,6 +22,7 @@
         </p>
     </div>
 </footer>
+ */ ?>
 
 </div><!-- .wrapper end-->
 

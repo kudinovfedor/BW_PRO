@@ -14,12 +14,16 @@
         <link rel="shortcut icon" type="image/x-icon" href="<?php echo BW_IMG . '/favicon.ico'; ?>">
         <link rel="manifest" href="<?php echo BW_FAVICON . '/site.webmanifest'; ?>">
         <link rel="mask-icon" href="<?php echo BW_FAVICON . '/safari-pinned-tab.svg'; ?>" color="#5bbad5">
-        <meta name="apple-mobile-web-app-title" content="<?php bloginfo('name'); ?> - <?php bloginfo('description'); ?>">
+        <meta name="apple-mobile-web-app-title"
+              content="<?php bloginfo('name'); ?> - <?php bloginfo('description'); ?>">
         <meta name="application-name" content="<?php bloginfo('name'); ?>">
         <meta name="msapplication-TileColor" content="#4b46d6">
         <meta name="theme-color" content="#ffffff">
     <?php } ?>
     <?php wp_head(); ?>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">-->
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 </head>
 <body <?php body_class(); ?> id="top">
 
@@ -27,7 +31,7 @@
 
 <div class="wrapper">
 
-    <div class="logo">
+    <div class="logo position-fixed top-left">
         <?php if (has_custom_logo()) {
 
             the_custom_logo();
@@ -46,12 +50,12 @@
         } ?>
     </div>
 
-    <button class="hamburger js-hamburger" type="button">
+    <button class="hamburger js-hamburger position-fixed top-right" type="button">
         <span class="hamburger-box"><span class="hamburger-inner"></span></span>
     </button>
 
     <?php if (function_exists('pll_the_languages')) { ?>
-        <ul class="lang">
+        <ul class="lang position-fixed bottom-left">
             <?php pll_the_languages(array(
                 'show_flags' => 0,
                 'show_names' => 1,
@@ -62,7 +66,7 @@
     <?php } ?>
 
     <?php if (has_social()) { ?>
-        <ul class="social">
+        <ul class="social position-fixed bottom-right">
             <?php foreach (get_social() as $social) { ?>
                 <li class="social-item">
                     <a href="<?php echo esc_attr(esc_url($social['url'])); ?>" class="social-link" target="_blank">
@@ -72,12 +76,6 @@
             <?php } ?>
         </ul>
     <?php } ?>
-
-    <button class="scroll-down" type="button">
-        <svg class="svg-icon" width="23" height="17" stroke="#fff">
-            <use xlink:href="#triangle"></use>
-        </svg>
-    </button>
 
     <?php if (false && has_nav_menu('main-nav')) { ?>
         <nav class="nav js-menu">
@@ -94,7 +92,9 @@
         </nav>
     <?php } ?>
 
+    <?php if (!is_front_page()) { ?>
     <div class="page-wrapper container">
+        <?php } ?>
 
         <?php /*
 
