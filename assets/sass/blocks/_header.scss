@@ -44,6 +44,7 @@
 
 .social {
     @extend %reset-list;
+    font-size: 0;
 
     &,
     &-item {
@@ -62,6 +63,12 @@
 
         &:hover {
         }
+    }
+
+    &-item,
+    &-link {
+        font-size: 18px;
+        line-height: 1;
     }
 }
 
@@ -90,6 +97,8 @@
 
 .lang {
     @extend %reset-list;
+    font-size: 0;
+    text-transform: uppercase;
 
     &,
     &-item {
@@ -98,7 +107,20 @@
     }
 
     &-item {
-        margin: 0 5px;
+        & + & {
+            a {
+                &::before {
+                    content: '|';
+                    margin: 0 5px;
+                }
+            }
+        }
+
+        &,
+        a {
+            font-size: 18px;
+            line-height: 1;
+        }
 
         a {
             display: block;
