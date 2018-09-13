@@ -6370,6 +6370,7 @@ img {
   background: transparent url("assets/img/substrate-btn-primary.png") no-repeat center center;
   background-size: 100% auto;
   color: #fff;
+  font-family: inherit;
   font-size: 24px;
   font-weight: bold;
   text-align: center;

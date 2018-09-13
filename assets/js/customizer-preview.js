@@ -130,6 +130,130 @@
             })
         });
 
+        // Home Page Settings
+        var service = $('.service'), portfolio = $('.portfolio'), contact = $('.contact');
+
+        api('bw_section_hero_title', function (control) {
+            control.bind(function (value) {
+                service.find('.page-name').text(value);
+            })
+        });
+
+        api('bw_section_hero_subtitle', function (control) {
+            control.bind(function (value) {
+                service.find('h2').text(value);
+            })
+        });
+
+        api('bw_section_hero_item1_title', function (control) {
+            control.bind(function (value) {
+                service.find('.service-item:nth-child(1) .service-name').text(value);
+            })
+        });
+        api('bw_section_hero_item1_url', function (control) {
+            control.bind(function (value) {
+                service.find('.service-item:nth-child(1) .service-box').attr('href', value);
+            })
+        });
+        api('bw_section_hero_item2_title', function (control) {
+            control.bind(function (value) {
+                service.find('.service-item:nth-child(2) .service-name').text(value);
+            })
+        });
+        api('bw_section_hero_item2_url', function (control) {
+            control.bind(function (value) {
+                service.find('.service-item:nth-child(2) .service-box').attr('href', value);
+            })
+        });
+        api('bw_section_hero_item3_title', function (control) {
+            control.bind(function (value) {
+                service.find('.service-item:nth-child(3) .service-name').text(value);
+            })
+        });
+        api('bw_section_hero_item3_url', function (control) {
+            control.bind(function (value) {
+                service.find('.service-item:nth-child(3) .service-box').attr('href', value);
+            })
+        });
+
+        api('bw_section_hero_btn_label', function (control) {
+            control.bind(function (value) {
+                service.find('.btn, .js-make-order').text(value);
+            })
+        });
+
+        api('bw_section_portfolio_title', function (control) {
+            control.bind(function (value) {
+                portfolio.find('.page-subname').text(value);
+            })
+        });
+
+        api('bw_section_portfolio_btn_label', function (control) {
+            control.bind(function (value) {
+                portfolio.find('.btn, .js-order-site').text(value);
+            })
+        });
+
+        api('bw_section_contact_title', function (control) {
+            control.bind(function (value) {
+                contact.find('.page-subname').text(value);
+            })
+        });
+
+        api('bw_section_contact_item1_title', function (control) {
+            control.bind(function (value) {
+                contact.find('.service-item:nth-child(1) .service-name').text(value);
+            })
+        });
+
+        api('bw_section_contact_item1_phone', function (control) {
+            control.bind(function (value) {
+                contact.find('.service-item:nth-child(1) .service-tel').text(value);
+            })
+        });
+
+        api('bw_section_contact_item1_email', function (control) {
+            control.bind(function (value) {
+                contact.find('.service-item:nth-child(1) .service-email').text(value);
+            })
+        });
+
+        api('bw_section_contact_item2_title', function (control) {
+            control.bind(function (value) {
+                contact.find('.service-item:nth-child(2) .service-name').text(value);
+            })
+        });
+
+        api('bw_section_contact_item2_phone', function (control) {
+            control.bind(function (value) {
+                contact.find('.service-item:nth-child(2) .service-tel').text(value);
+            })
+        });
+
+        api('bw_section_contact_item2_email', function (control) {
+            control.bind(function (value) {
+                contact.find('.service-item:nth-child(2) .service-email').text(value);
+            })
+        });
+
+        api('bw_section_contact_item3_title', function (control) {
+            control.bind(function (value) {
+                contact.find('.service-item:nth-child(3) .service-name').text(value);
+            })
+        });
+
+        api('bw_section_contact_item3_phone', function (control) {
+            control.bind(function (value) {
+                contact.find('.service-item:nth-child(3) .service-tel').text(value);
+            })
+        });
+
+        api('bw_section_contact_item3_email', function (control) {
+            control.bind(function (value) {
+                contact.find('.service-item:nth-child(3) .service-email').text(value);
+            })
+        });
+
     });
 
 })(jQuery);
