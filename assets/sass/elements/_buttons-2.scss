@@ -8,6 +8,7 @@
     height: auto;
     cursor: pointer;
     font-size: 16px;
+    font-weight: bold;
     border: 1px solid $buttonOutlinedFirstColor;
     background-color: $buttonOutlinedSecondColor;
     box-shadow: none;
@@ -41,7 +42,7 @@
 
     &:hover, &:active {
         background-color: $buttonOutlinedFirstColor;
-        color: $buttonOutlinedSecondColor;
+        color: $buttonFontColorActive;
     }
 
 }

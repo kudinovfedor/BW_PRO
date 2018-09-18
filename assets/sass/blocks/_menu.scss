@@ -388,12 +388,12 @@
 
 //xs 544
 @media #{$mobile} {
-    .hamburger {
-        display: inline-block;
-        position: absolute;
-        top: 0;
-        right: 10px;
-    }
+    //.hamburger {
+    //    display: inline-block;
+    //    position: absolute;
+    //    top: 0;
+    //    right: 10px;
+    //}
 
     .nav {
         position: fixed;

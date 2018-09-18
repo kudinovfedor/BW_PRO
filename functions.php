@@ -24,3 +24,35 @@ require_once locate_template('/inc/shortcodes.php');
 require_once locate_template('/inc/meta-boxes.php');
 
 require_once locate_template('/inc/home-customizer.php');
+require_once locate_template('/inc/post_type_portfolio.php');
+
+if (!function_exists('dump')) {
+    /**
+     * Dumps information about a variable
+     *
+     * @param mixed ...$expression
+     *
+     * @return void
+     */
+    function dump(...$expression)
+    {
+        echo '<pre>';
+        var_dump($expression);
+        echo '</pre>';
+    }
+}
+
+if (!function_exists('dd')) {
+    /**
+     * Dump and die
+     *
+     * @param mixed ...$expression
+     *
+     * @return void
+     */
+    function dd(...$expression)
+    {
+        dump($expression);
+        die();
+    }
+}

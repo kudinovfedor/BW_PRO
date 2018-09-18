@@ -21,9 +21,6 @@
         <meta name="theme-color" content="#ffffff">
     <?php } ?>
     <?php wp_head(); ?>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
-    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">-->
-    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 </head>
 <body <?php body_class(); ?> id="top">
 
@@ -31,51 +28,55 @@
 
 <div class="wrapper">
 
-    <div class="logo position-fixed top-left">
-        <?php if (has_custom_logo()) {
+    <header class="header is-fixed top-edge">
+        <div class="logo left-position">
+            <?php if (has_custom_logo()) {
 
-            the_custom_logo();
+                the_custom_logo();
 
-        } else {
+            } else {
 
-            $logo = '<svg class="logo-img" width="105" height="63" fill="#fff"><use xlink:href="#logo"></use></svg>';
+                $logo = '<svg class="logo-img" width="105" height="63" fill="#fff"><use xlink:href="#logo"></use></svg>';
 
-            $link = sprintf('<a class="logo-link" href="%s">%s</a>', esc_url(home_url('/')), $logo);
+                $link = sprintf('<a class="logo-link" href="%s">%s</a>', esc_url(home_url('/')), $logo);
 
-            $span = sprintf('<span class="logo-link">%s</span>', $logo);
+                $span = sprintf('<span class="logo-link">%s</span>', $logo);
 
-            $html = is_front_page() ? $span : $link;
+                $html = is_front_page() ? $span : $link;
 
-            echo $html;
-        } ?>
-    </div>
+                echo $html;
+            } ?>
+        </div>
 
-    <button class="hamburger js-hamburger position-fixed top-right" type="button">
-        <span class="hamburger-box"><span class="hamburger-inner"></span></span>
-    </button>
+        <button class="hamburger js-hamburger right-position" type="button">
+            <span class="hamburger-box"><span class="hamburger-inner"></span></span>
+        </button>
+    </header>
 
-    <?php if (function_exists('pll_the_languages')) { ?>
-        <ul class="lang position-fixed bottom-left">
-            <?php pll_the_languages(array(
-                'show_flags' => 0,
-                'show_names' => 1,
-                'hide_if_empty' => 0,
-                'display_names_as' => 'name'
-            )); ?>
-        </ul>
-    <?php } ?>
+    <footer class="footer is-fixed bottom-edge">
+        <?php if (function_exists('pll_the_languages')) { ?>
+            <ul class="lang left-position">
+                <?php pll_the_languages(array(
+                    'show_flags' => 0,
+                    'show_names' => 1,
+                    'hide_if_empty' => 0,
+                    'display_names_as' => 'name'
+                )); ?>
+            </ul>
+        <?php } ?>
 
-    <?php if (has_social()) { ?>
-        <ul class="social position-fixed bottom-right">
-            <?php foreach (get_social() as $social) { ?>
-                <li class="social-item">
-                    <a href="<?php echo esc_attr(esc_url($social['url'])); ?>" class="social-link" target="_blank">
-                        <?php echo esc_html($social['text']); ?>
-                    </a>
-                </li>
-            <?php } ?>
-        </ul>
-    <?php } ?>
+        <?php if (has_social()) { ?>
+            <ul class="social right-position">
+                <?php foreach (get_social() as $social) { ?>
+                    <li class="social-item">
+                        <a href="<?php echo esc_attr(esc_url($social['url'])); ?>" class="social-link" target="_blank">
+                            <?php echo esc_html($social['text']); ?>
+                        </a>
+                    </li>
+                <?php } ?>
+            </ul>
+        <?php } ?>
+    </footer>
 
     <?php if (false && has_nav_menu('main-nav')) { ?>
         <nav class="nav js-menu">
@@ -92,7 +93,7 @@
         </nav>
     <?php } ?>
 
-    <?php if (!is_front_page()) { ?>
+    <?php if (!is_front_page() && !is_post_type_archive('portfolio') && !is_tax('portfolio-category')) { ?>
     <div class="page-wrapper container">
         <?php } ?>
 

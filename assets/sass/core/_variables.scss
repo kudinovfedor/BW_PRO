@@ -78,12 +78,12 @@ $linkFontColorActive: darken($linkFontColor, 20%);
 
 // BUTTONS
 $buttonFontColor: #fff;
-$buttonFontColorActive: #fff;
+$buttonFontColorActive: #000;
 $buttonBgColor: $themeColorTwo;
 $buttonBgColorActive: darken($buttonBgColor, 10%);
 $buttonBorderColor: $themeColorTwo;
-$buttonOutlinedFirstColor: $themeColorTwo;
-$buttonOutlinedSecondColor: #fff;
+$buttonOutlinedFirstColor: #fff;
+$buttonOutlinedSecondColor: transparent;
 
 // TABLE
 $tableBgColor: $themeColorTwo;

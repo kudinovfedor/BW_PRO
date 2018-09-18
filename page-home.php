@@ -2,11 +2,7 @@
 /**
  * Template Name: Home Page
  **/
-?>
-
-<?php get_header(); ?>
-
-<?php
+get_header();
 
 $services = array(
     array(
@@ -61,46 +57,90 @@ if (function_exists('pll_e')) { ?>
         </button>
     </section>
 
-    <div class="section-box" id="section-two">
-        <div class="portfolio">
-            <h2 class="page-subname"><?php pll_e(get_theme_mod('bw_section_portfolio_title', 'Наши работы')); ?></h2>
-            <div class="container filter">
-                <ul class="filter-list text-center text-uppercase">
-                    <li class="filter-item">Лендинг</li>
-                    <li class="filter-item">Интернет-Магазин</li>
-                    <li class="filter-item">Сайт-Визитка</li>
-                </ul>
-            </div>
-            <div class="portfolio-list ">
-                <div class="js-slider">
-                    <?php for ($i = 0; $i < 10; $i++) {
-                        $bg = get_template_directory_uri() . '/assets/img/portfolio-item-1.jpg' ?>
-                        <div>
-                            <div class="portfolio-item">
-                                <div class="portfolio-preview">
-                                    <div class="portfolio-thumbnail"
-                                         style="background-image: url('<?php echo esc_url($bg); ?>');"></div>
-                                </div>
-                                <div class="portfolio-body">
-                                    <time class="portfolio-datetime" datetime="">20.01.18</time>
-                                    <div class="portfolio-category">Лендинг <?= $i; ?></div>
-                                    <div class="portfolio-name text-uppercase">Comfort Trans</div>
+    <?php
+    $args = array(
+        'post_type' => 'portfolio',
+        'posts_per_page' => -1,
+    );
+
+    $query = new WP_Query($args);
+    if ($query->have_posts()) { ?>
+        <div class="section-box" id="section-two">
+            <div class="portfolio">
+                <h2 class="page-subname">
+                    <?php pll_e(get_theme_mod('bw_section_portfolio_title', 'Наши работы')); ?>
+                </h2>
+                <?php
+                $categories = get_terms(array(
+                    'taxonomy' => 'portfolio-category',
+                    'hide_empty' => true,
+                    'orderby' => 'name',
+                    'order' => 'ASC',
+                ));
+
+                if (count($categories)) { ?>
+                    <div class="container filter">
+                        <ul class="filter-list text-center text-uppercase">
+                            <?php foreach ($categories as $category) { ?>
+                                <li class="filter-item">
+                                    <a href="<?php echo esc_url(get_category_link($category->term_id)); ?>"
+                                       class="filter-link">
+                                        <?php echo esc_html($category->name); ?>
+                                    </a>
+                                </li>
+                            <?php } ?>
+                        </ul>
+                    </div>
+                <?php } ?>
+                <div class="portfolio-list">
+                    <div class="js-slider">
+                        <?php while ($query->have_posts()) {
+                            $query->the_post();
+                            $attachment_id = get_post_thumbnail_id();
+                            $bg_url = has_post_thumbnail() ? wp_get_attachment_image_url($attachment_id,
+                                'large') : 'none';
+                            $categories = get_the_terms(get_the_ID(), 'portfolio-category');
+                            $link_url = function_exists('rwmb_meta') ? rwmb_meta('bw-portfolio-url') : '#';
+                            $cat_names = [];
+                            foreach ($categories as $category) {
+                                $cat_names[] = $category->name;
+                            }
+                            ?>
+                            <div>
+                                <div id="post-<?php the_ID(); ?>" <?php post_class('portfolio-item'); ?>>
+                                    <div class="portfolio-preview">
+                                        <a class="portfolio-thumbnail" href="<?php echo esc_url($link_url); ?>"
+                                           style="background-image: url('<?php echo esc_url($bg_url); ?>');"></a>
+                                    </div>
+                                    <div class="portfolio-body">
+                                        <time class="portfolio-datetime"
+                                              datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date('d.m.y'); ?></time>
+                                        <?php if (count($cat_names)) { ?>
+                                            <div class="portfolio-category"><?php echo join(', ', $cat_names); ?></div>
+                                        <?php } ?>
+                                        <div class="portfolio-name text-uppercase">
+                                            <a href="<?php echo esc_url($link_url); ?>"><?php the_title(); ?></a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    <?php } ?>
+                        <?php } ?>
+                        <?php wp_reset_postdata(); ?>
+                    </div>
+                    <button type="button" class="slick-arrow slick-prev js-slick-prev"><?php _e('< Previous',
+                            'brainworks'); ?></button>
+                    <button type="button" class="slick-arrow slick-next js-slick-next"><?php _e('Next >',
+                            'brainworks'); ?></button>
                 </div>
-                <button type="button" class="slick-arrow slick-prev js-slick-prev">< Предыдущая</button>
-                <button type="button" class="slick-arrow slick-next js-slick-next">Следующая ></button>
-            </div>
-            <div class="text-center">
-                <button class="btn btn-primary btn-special btn-shadow js-order-site" type="button">
-                    <?php pll_e(get_theme_mod('bw_section_portfolio_btn_label', 'Заказать сайт')); ?>
-                </button>
+                <div class="text-center">
+                    <a class="btn btn-primary btn-special btn-shadow js-order-site"
+                       href="<?php echo esc_url(get_post_type_archive_link('portfolio')); ?>">
+                        <?php pll_e(get_theme_mod('bw_section_portfolio_btn_label', 'Заказать сайт')); ?>
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-
+    <?php } ?>
     <div class="section-box">
         <div class="contact">
             <div class="container">
@@ -144,25 +184,31 @@ if (function_exists('pll_e')) { ?>
                         <?php } ?>
                     </ul>
                 </div>
-                <form action="./" method="post" class="form form-box">
-                    <div class="form-row form-columns">
-                        <div class="form-column">
-                            <input class="form-field" type="text" name="name" placeholder="Ваше имя" required>
-                        </div>
-                        <div class="form-column">
-                            <input class="form-field" type="tel" name="tel" placeholder="Телефон" required>
-                        </div>
-                        <div class="form-column">
-                            <input class="form-field" type="email" name="email" placeholder="E-mail" required>
-                        </div>
+                <?php if ($shortcode = get_theme_mod('bw_section_contact_shortcode')) { ?>
+                    <div class="form form-box">
+                        <?php echo do_shortcode($shortcode); ?>
                     </div>
-                    <div class="form-row">
-                        <textarea class="form-field" name="message" placeholder="Ваше сообщение"></textarea>
-                    </div>
-                    <div class="text-center">
-                        <a class="btn btn-primary btn-special" href="#">Отправить</a>
-                    </div>
-                </form>
+                <?php } else { ?>
+                    <form action="./" method="post" class="form form-box">
+                        <div class="form-row form-columns">
+                            <div class="form-column">
+                                <input class="form-field" type="text" name="name" placeholder="Ваше имя" required>
+                            </div>
+                            <div class="form-column">
+                                <input class="form-field" type="tel" name="tel" placeholder="Телефон" required>
+                            </div>
+                            <div class="form-column">
+                                <input class="form-field" type="email" name="email" placeholder="E-mail" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <textarea class="form-field" name="message" placeholder="Ваше сообщение"></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-primary btn-special" type="submit">Отправить</button>
+                        </div>
+                    </form>
+                <?php } ?>
             </div>
         </div>
     </div>

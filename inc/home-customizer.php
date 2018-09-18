@@ -251,6 +251,10 @@ function bw_home_customize($wp_customize)
         'transport' => 'postMessage',
     ));
 
+    $wp_customize->add_setting('bw_section_contact_shortcode', array(
+        'default' => '',
+    ));
+
     $wp_customize->add_control('bw_section_contact_title', array(
         'label' => 'Title',
         'section' => 'bw_section_contact',
@@ -313,6 +317,13 @@ function bw_home_customize($wp_customize)
         'section' => 'bw_section_contact',
         'settings' => 'bw_section_contact_item3_email',
         'type' => 'email',
+    ));
+
+    $wp_customize->add_control('bw_section_contact_shortcode', array(
+        'label' => 'Contact Form [shortcode]',
+        'section' => 'bw_section_contact',
+        'settings' => 'bw_section_contact_shortcode',
+        'type' => 'text',
     ));
 }
 

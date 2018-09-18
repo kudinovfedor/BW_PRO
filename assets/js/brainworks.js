@@ -15,7 +15,6 @@
 
         html.removeClass('no-js').addClass('js');
 
-
         if (slider.length) {
             slider
                 .on('init', function () {
@@ -49,6 +48,7 @@
                             'breakpoint': 768,
                             'settings': {
                                 'slidesToShow': 2,
+                                'draggable': true,
                             }
                         },
                         {
