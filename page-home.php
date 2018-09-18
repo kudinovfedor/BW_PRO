@@ -189,7 +189,7 @@ if (function_exists('pll_e')) { ?>
                         <?php echo do_shortcode($shortcode); ?>
                     </div>
                 <?php } else { ?>
-                    <form action="./" method="post" class="form form-box">
+                    <form action="<?php echo admin_url('admin-ajax.php'); ?>" method="post" class="form form-box" id="contact-form">
                         <div class="form-row form-columns">
                             <div class="form-column">
                                 <input class="form-field" type="text" name="name" placeholder="Ваше имя" required>
@@ -205,6 +205,8 @@ if (function_exists('pll_e')) { ?>
                             <textarea class="form-field" name="message" placeholder="Ваше сообщение"></textarea>
                         </div>
                         <div class="text-center">
+                            <input type="hidden" name="action" value="contact_form">
+                            <?php wp_nonce_field('contact_form_action', 'nonce', true); ?>
                             <button class="btn btn-primary btn-special" type="submit">Отправить</button>
                         </div>
                     </form>

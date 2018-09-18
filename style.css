@@ -6464,11 +6464,17 @@ img {
   text-align: center;
   text-transform: uppercase;
   min-width: 260px; }
+  .btn-special:hover {
+    background-color: transparent;
+    color: #fff; }
 
 .btn-shadow {
   padding: 26px 20px;
   min-width: 320px;
   background-image: url("assets/img/substrate-btn-primary-shadow.png"); }
+  .btn-shadow:hover {
+    background-color: transparent;
+    color: #fff; }
 
 .portfolio-list {
   position: relative;

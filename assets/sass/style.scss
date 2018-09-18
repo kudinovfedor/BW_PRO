@@ -395,12 +395,22 @@ img {
     text-align: center;
     text-transform: uppercase;
     min-width: 260px;
+
+    &:hover {
+        background-color: transparent;
+        color: #fff;
+    }
 }
 
 .btn-shadow {
     padding: 26px 20px;
     min-width: 320px;
     background-image: image-url('substrate-btn-primary-shadow.png');
+
+    &:hover {
+        background-color: transparent;
+        color: #fff;
+    }
 }
 
 .portfolio {
