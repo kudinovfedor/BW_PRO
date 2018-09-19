@@ -84,4 +84,40 @@
         }
     }
 
+    var Ajax = {
+        'xhr': null,
+        'request': function (method, url, data, done, fail) {
+            this.xhr = new XMLHttpRequest();
+
+            var self = this.xhr;
+            var DONE = (typeof XMLHttpRequest.DONE !== 'undefined') ? XMLHttpRequest.DONE : 4;
+
+            self.open(method, url, true);
+            self.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+            self.send(data);
+
+            self.addEventListener('load', function () {
+                if (self.readyState === DONE && self.status === 200) {
+
+                    if (done && typeof done === 'function') {
+                        done(self.responseText);
+                    }
+
+                }
+            });
+
+            self.addEventListener('error', function () {
+                if (done && typeof done === 'function') {
+                    fail();
+                }
+            });
+        },
+        'get': function (url, done, fail) {
+            this.request('GET', url, null, done, fail);
+        },
+        'post': function (url, data, done, fail) {
+            this.request('POST', url, data, done, fail);
+        },
+    };
+
 })(window, document, window.jpAjax);
