@@ -45,3 +45,18 @@ function no_generator()
 }
 
 add_filter('the_generator', 'no_generator');
+
+/**
+ * It removes from script and style (type='text/javascript' and type='text/css')
+ *
+ * @param $tag
+ *
+ * @return mixed
+ */
+function jp_remove_type_attr($tag)
+{
+    return preg_replace("/type=['\"]text\/(javascript|css)['\"]/", '', $tag);
+}
+
+add_filter('style_loader_tag', 'jp_remove_type_attr');
+add_filter('script_loader_tag', 'jp_remove_type_attr');
