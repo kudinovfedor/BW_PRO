@@ -10,7 +10,7 @@ require_once locate_template('/inc/admin.php');
 require_once locate_template('/inc/login.php');
 require_once locate_template('/inc/customizer.php');
 
-//require_once locate_template('/inc/breadcrumbs.php');
+require_once locate_template('/inc/breadcrumbs.php');
 require_once locate_template('/inc/cleanup.php');
 require_once locate_template('/inc/custom-logo.php');
 require_once locate_template('/inc/setup.php');
@@ -25,8 +25,6 @@ require_once locate_template('/inc/meta-boxes.php');
 
 require_once locate_template('/inc/home-customizer.php');
 require_once locate_template('/inc/post_type_portfolio.php');
-
-require_once 'inc/ajax-contact-form.php';
 
 if (!function_exists('dump')) {
     /**
@@ -59,6 +57,4 @@ if (!function_exists('dd')) {
     }
 }
 
-if (WP_DEBUG && WP_DEBUG_DISPLAY && (defined('DOING_AJAX') && DOING_AJAX)) {
-    @ ini_set('display_errors', 1);
-}
+require_once 'inc/ajax-contact-form.php';

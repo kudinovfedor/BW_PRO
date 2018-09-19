@@ -127,10 +127,10 @@ if (function_exists('pll_e')) { ?>
                         <?php } ?>
                         <?php wp_reset_postdata(); ?>
                     </div>
-                    <button type="button" class="slick-arrow slick-prev js-slick-prev"><?php _e('< Previous',
+                    <button type="button" class="slick-arrow slick-prev js-slick-prev">&lt; <?php _e('Previous',
                             'brainworks'); ?></button>
-                    <button type="button" class="slick-arrow slick-next js-slick-next"><?php _e('Next >',
-                            'brainworks'); ?></button>
+                    <button type="button" class="slick-arrow slick-next js-slick-next"><?php _e('Next',
+                            'brainworks'); ?> &gt;</button>
                 </div>
                 <div class="text-center">
                     <a class="btn btn-primary btn-special btn-shadow js-order-site"
@@ -189,24 +189,22 @@ if (function_exists('pll_e')) { ?>
                         <?php echo do_shortcode($shortcode); ?>
                     </div>
                 <?php } else { ?>
-                    <form action="<?php echo admin_url('admin-ajax.php'); ?>" method="post" class="form form-box" id="contact-form">
+                    <form method="post" class="form form-box" id="contact-form" enctype="application/x-www-form-urlencoded" accept-charset="UTF-8">
                         <div class="form-row form-columns">
                             <div class="form-column">
-                                <input class="form-field" type="text" name="name" placeholder="Ваше имя" required>
+                                <input class="form-field" type="text" name="name" placeholder="Ваше имя" required minlength="3">
                             </div>
                             <div class="form-column">
-                                <input class="form-field" type="tel" name="tel" placeholder="Телефон" required>
+                                <input class="form-field" type="tel" name="tel" placeholder="Телефон" required minlength="10" maxlength="15">
                             </div>
                             <div class="form-column">
                                 <input class="form-field" type="email" name="email" placeholder="E-mail" required>
                             </div>
                         </div>
                         <div class="form-row">
-                            <textarea class="form-field" name="message" placeholder="Ваше сообщение"></textarea>
+                            <textarea class="form-field" name="message" placeholder="Ваше сообщение" minlength="5"></textarea>
                         </div>
                         <div class="text-center">
-                            <input type="hidden" name="action" value="contact_form">
-                            <?php wp_nonce_field('contact_form_action', 'nonce', true); ?>
                             <button class="btn btn-primary btn-special" type="submit">Отправить</button>
                         </div>
                     </form>
