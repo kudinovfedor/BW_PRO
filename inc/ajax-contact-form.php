@@ -10,7 +10,7 @@ add_action('wp_enqueue_scripts', function () {
         'url' => admin_url('admin-ajax.php'),
     ]);
 
-    if(
+    if (
         is_front_page()
         || is_page('contact')
         || is_page_template('page-contact.php')
@@ -94,10 +94,12 @@ function jp_ajax_contact_form_callback()
 
         wp_mail($email['to'], $email['subject'], $email['message'], $email['headers'], $email['attachments']);
 
-        _e('Message sent successfully.', 'joompress');
+        $message = __('Message sent successfully.', 'joompress');
+        wp_send_json_success($message, 200);
 
     } else {
-        _e('Failed to send message.', 'joompress');
+        $message = __('Failed to send message.', 'joompress');
+        wp_send_json_error($message, 404);
     }
 
     wp_die();

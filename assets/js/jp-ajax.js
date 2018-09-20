@@ -1,5 +1,7 @@
-(function (w, d, ajax, $) {
+var AjaxJP = (function () {
     'use strict';
+
+    var Ajax;
 
     /**
      * JP Ajax
@@ -9,12 +11,12 @@
      *
      * @type {{xhr: null, request: request, get: get, post: post}}
      */
-    var Ajax = {
+    Ajax = {
         /**
          * @type {XMLHttpRequest}
          */
-
         'xhr': null,
+
         /**
          * @callback doneCallback
          * @param response -
@@ -23,6 +25,12 @@
 
         /**
          * @callback failCallback
+         * @param response -
+         * @param {Object} status - A object describing the status code and status text.
+         */
+
+        /**
+         * @callback alwaysCallback
          * @param response -
          * @param {Object} status - A object describing the status code and status text.
          */
@@ -41,10 +49,11 @@
          * @param data - Data to be sent to the server.
          * @param {doneCallback} done - A function to be called if the request succeeds.
          * @param {failCallback} [fail] - A function to be called if the request fails.
+         * @param {alwaysCallback} [always] - A function to be called when the request finishes
          * (after done and fail callbacks are executed).
          * @returns {void}
          */
-        request: function (method, url, data, done, fail) {
+        request: function (method, url, data, done, fail, always) {
 
             var self, state, status;
 
@@ -75,10 +84,27 @@
 
             self.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 
+            self.addEventListener('loadstart', function () {
+                //console.log('[Load Start]');
+            });
+
+            self.addEventListener('progress', function () {
+                //console.log('[Progress]');
+            });
+
             self.addEventListener('error', function () {
                 if (fail && typeof fail === 'function') {
                     fail(self.responseText, status);
                 }
+                //console.log('[Error]');
+            });
+
+            self.addEventListener('abort', function () {
+                //console.log('[Abort]');
+            });
+
+            self.addEventListener('timeout', function () {
+                //console.log('[Timeout]');
             });
 
             self.addEventListener('load', function () {
@@ -99,6 +125,22 @@
                         fail(self.responseText, status);
                     }
                 }
+
+                //console.log('[Load]');
+            });
+
+            self.addEventListener('loadend', function () {
+                if (always && typeof always === 'function') {
+                    always(self.responseText, status);
+                }
+                //console.log('[Loadend]');
+            });
+
+            self.addEventListener('readystatechange', function () {
+                //console.log('[Ready State Change]', self.readyState);
+                if (self.readyState === state.HEADERS_RECEIVED) {
+                    //console.log(self.getAllResponseHeaders());
+                }
             });
 
             self.send(data);
@@ -116,11 +158,12 @@
          * @param {string} url - A string containing the URL to which the request is sent.
          * @param {doneCallback} done - A function to be called if the request succeeds.
          * @param {failCallback} [fail] - A function to be called if the request fails.
+         * @param {alwaysCallback} [always] - A function to be called when the request finishes
          * (after done and fail callbacks are executed).
          * @returns {void}
          */
-        get: function (url, done, fail) {
-            this.request('GET', url, null, done, fail);
+        get: function (url, done, fail, always) {
+            this.request('GET', url, null, done, fail, always);
         },
 
         /**
@@ -136,139 +179,14 @@
          * @param data - Data to be sent to the server.
          * @param {doneCallback} done - A function to be called if the request succeeds.
          * @param {failCallback} [fail] - A function to be called if the request fails.
+         * @param {alwaysCallback} [always] - A function to be called when the request finishes
          * (after done and fail callbacks are executed).
          * @returns {void}
          */
-        post: function (url, data, done, fail) {
-            this.request('POST', url, data, done, fail);
+        post: function (url, data, done, fail, always) {
+            this.request('POST', url, data, done, fail, always);
         },
     };
 
-    d.addEventListener('DOMContentLoaded', function () {
-        ajaxContactForm('#contact-form');
-    });
-
-    function ajaxContactForm(selector) {
-
-        var form = d.querySelector(selector);
-
-        if (form) {
-
-            var fields = form.querySelectorAll('input, select, textarea');
-
-            var data = {
-                'action': ajax.action,
-                'nonce': ajax.nonce,
-            };
-
-            form.addEventListener('submit', function (event) {
-                event.preventDefault();
-
-                var field, params, i;
-
-                for (i = 0; i < fields.length; i++) {
-                    field = fields[i];
-                    data[field.name] = field.value;
-                }
-
-                params = getParams(data);
-
-                Ajax.post(ajax.url, params, function done(data, status) {
-
-                    elementShowMessage(form, JSON.parse(data).data, 'alert-success');
-                    console.log('Done: ', data, status);
-
-                }, function fail(data, status) {
-
-                    elementShowMessage(form, JSON.parse(data).data, 'alert-error');
-                    console.log('Fail: ', data, status);
-
-                });
-
-                /*var xhr = new XMLHttpRequest();
-                xhr.open('POST', ajax.url, true);
-                xhr.responseType = 'text';
-                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-
-                xhr.onload = function () {
-                    if (xhr.readyState === 4 && xhr.status === 200) {
-                        console.log(xhr.responseText);
-                    }
-                };
-
-                xhr.onerror = function () {
-                    console.log(xhr.response);
-                };
-
-                xhr.send(params);*/
-
-                /*$.ajax({
-                    'url': ajax.url,
-                    'method': 'POST',
-                    'dataType': 'html',
-                    'data': data,
-                })
-                    .done(function (data, textStatus, jqXHR) {
-                        console.log('[Method Done]', data, textStatus, jqXHR);
-                    })
-                    .fail(function (jqXHR, textStatus, errorThrown) {
-                        console.log('[Method Fail]', jqXHR, textStatus, errorThrown);
-                    })
-                    .always(function () {
-                        //console.log('[Method Always]');
-                    });*/
-            });
-
-        }
-
-        /**
-         * Show Message
-         *
-         * @description
-         * Displaying a message inside a selected element.
-         *
-         * @param {Object} element - The chosen element of the page.
-         * @param {string} message - Message to display.
-         * @param {string} className - Class name for the created div element
-         * @param {number} [timeout=5000] - Waiting time in milliseconds.
-         */
-        function elementShowMessage(element, message, className, timeout) {
-            var div = d.createElement('div');
-            div.className = 'alert ' + className;
-            div.innerText = message;
-            element.appendChild(div);
-
-            setTimeout(function () {
-                var elements = d.querySelectorAll('.alert');
-                elements.forEach(function (elem) {
-                    elem.parentNode.removeChild(elem);
-                });
-            }, timeout || 5000);
-        }
-
-        /**
-         * String Params
-         *
-         * @description
-         * Get string of params from object.
-         *
-         * @param {Object} object - Object for converted into the string.
-         * @returns {string} - String with parameters.
-         */
-        function getParams(object) {
-            var encodedString = '', prop;
-
-            for (prop in object) {
-                if (object.hasOwnProperty(prop)) {
-                    if (encodedString.length > 0) {
-                        encodedString += '&';
-                    }
-                    encodedString += encodeURI(prop + '=' + object[prop]);
-                }
-            }
-
-            return encodedString;
-        }
-    }
-
-})(window, document, window.jpAjax, jQuery);
+    return Ajax;
+})();

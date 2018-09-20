@@ -195,7 +195,7 @@ if (function_exists('pll_e')) { ?>
                                 <input class="form-field" type="text" name="name" placeholder="Ваше имя" required minlength="3">
                             </div>
                             <div class="form-column">
-                                <input class="form-field" type="tel" name="tel" placeholder="Телефон" required minlength="10" maxlength="15">
+                                <input class="form-field" type="tel" name="tel" placeholder="Телефон" required minlength="8" maxlength="15" pattern="^[+0-9]{8,15}$">
                             </div>
                             <div class="form-column">
                                 <input class="form-field" type="email" name="email" placeholder="E-mail" required>

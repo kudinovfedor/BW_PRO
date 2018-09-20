@@ -6589,8 +6589,8 @@ img {
   .bottom-edge {
     padding-bottom: 50px; }
   .logo-img {
-    width: auto;
-    height: auto; } }
+    width: 105px;
+    height: 63px; } }
 
 @media only screen and (max-width: 1400px) {
   .without-js .portfolio-item {
