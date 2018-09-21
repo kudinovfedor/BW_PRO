@@ -110,6 +110,7 @@ if (function_exists('pll_e')) { ?>
                                 <div id="post-<?php the_ID(); ?>" <?php post_class('portfolio-item'); ?>>
                                     <div class="portfolio-preview">
                                         <a class="portfolio-thumbnail" href="<?php echo esc_url($link_url); ?>"
+                                           target="_blank"
                                            style="background-image: url('<?php echo esc_url($bg_url); ?>');"></a>
                                     </div>
                                     <div class="portfolio-body">
@@ -119,7 +120,8 @@ if (function_exists('pll_e')) { ?>
                                             <div class="portfolio-category"><?php echo join(', ', $cat_names); ?></div>
                                         <?php } ?>
                                         <div class="portfolio-name text-uppercase">
-                                            <a href="<?php echo esc_url($link_url); ?>"><?php the_title(); ?></a>
+                                            <a href="<?php echo esc_url($link_url); ?>"
+                                               target="_blank"><?php the_title(); ?></a>
                                         </div>
                                     </div>
                                 </div>
@@ -130,7 +132,8 @@ if (function_exists('pll_e')) { ?>
                     <button type="button" class="slick-arrow slick-prev js-slick-prev">&lt; <?php _e('Previous',
                             'brainworks'); ?></button>
                     <button type="button" class="slick-arrow slick-next js-slick-next"><?php _e('Next',
-                            'brainworks'); ?> &gt;</button>
+                            'brainworks'); ?> &gt;
+                    </button>
                 </div>
                 <div class="text-center">
                     <a class="btn btn-primary btn-special btn-shadow js-order-site"
@@ -189,20 +192,24 @@ if (function_exists('pll_e')) { ?>
                         <?php echo do_shortcode($shortcode); ?>
                     </div>
                 <?php } else { ?>
-                    <form method="post" class="form form-box" id="contact-form" enctype="application/x-www-form-urlencoded" accept-charset="UTF-8">
+                    <form method="post" class="form form-box" id="contact-form"
+                          enctype="application/x-www-form-urlencoded" accept-charset="UTF-8">
                         <div class="form-row form-columns">
                             <div class="form-column">
-                                <input class="form-field" type="text" name="name" placeholder="Ваше имя" required minlength="3">
+                                <input class="form-field" type="text" name="name" placeholder="Ваше имя" required
+                                       minlength="3">
                             </div>
                             <div class="form-column">
-                                <input class="form-field" type="tel" name="tel" placeholder="Телефон" required minlength="8" maxlength="15" pattern="^[+0-9]{8,15}$">
+                                <input class="form-field" type="tel" name="tel" placeholder="Телефон" required
+                                       minlength="8" maxlength="15" pattern="^[+0-9]{8,15}$">
                             </div>
                             <div class="form-column">
                                 <input class="form-field" type="email" name="email" placeholder="E-mail" required>
                             </div>
                         </div>
                         <div class="form-row">
-                            <textarea class="form-field" name="message" placeholder="Ваше сообщение" minlength="5"></textarea>
+                            <textarea class="form-field" name="message" placeholder="Ваше сообщение"
+                                      minlength="5"></textarea>
                         </div>
                         <div class="text-center">
                             <button class="btn btn-primary btn-special" type="submit">Отправить</button>

@@ -49,7 +49,7 @@
                     ?>
                     <div id="post-<?php the_ID(); ?>" <?php post_class('portfolio-item'); ?>>
                         <div class="portfolio-preview">
-                            <a class="portfolio-thumbnail" href="<?php echo esc_url($link_url); ?>"
+                            <a class="portfolio-thumbnail" href="<?php echo esc_url($link_url); ?>" target="_blank"
                                style="background-image: url('<?php echo esc_url($bg_url); ?>');"></a>
                         </div>
                         <div class="portfolio-body">
@@ -59,7 +59,7 @@
                                 <div class="portfolio-category"><?php echo join(', ', $cat_names); ?></div>
                             <?php } ?>
                             <div class="portfolio-name text-uppercase">
-                                <a href="<?php echo esc_url($link_url); ?>"><?php the_title(); ?></a>
+                                <a href="<?php echo esc_url($link_url); ?>" target="_blank"><?php the_title(); ?></a>
                             </div>
                         </div>
                     </div>
