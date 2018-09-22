@@ -25,6 +25,7 @@ require_once locate_template('/inc/meta-boxes.php');
 
 require_once locate_template('/inc/home-customizer.php');
 require_once locate_template('/inc/post_type_portfolio.php');
+require_once locate_template('/inc/taxonomy-meta-box.php');
 
 if (!function_exists('dump')) {
     /**
