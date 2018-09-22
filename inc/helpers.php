@@ -488,3 +488,17 @@ if (!function_exists('sanitize_background_setting')) {
         return $value;
     }
 }
+
+if (!function_exists('pll__')) {
+    function pll__($string)
+    {
+        return $string;
+    }
+}
+
+if (!function_exists('pll_e')) {
+    function pll_e($string)
+    {
+        echo pll__($string);
+    }
+}

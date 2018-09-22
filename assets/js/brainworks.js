@@ -15,7 +15,22 @@
 
         html.removeClass('no-js').addClass('js');
 
-        if (slider.length) {
+        var scrollPosition, headerFooter = $('.header, .footer');
+
+        $(window).on('scroll', function () {
+           scrollPosition = $(this).scrollTop();
+           if(scrollPosition > 50) {
+               if(!headerFooter.hasClass('substrate')) {
+                   headerFooter.addClass('substrate');
+               }
+           } else {
+               if(headerFooter.hasClass('substrate')) {
+                   headerFooter.removeClass('substrate');
+               }
+           }
+        });
+
+        if (slider.find('.portfolio-item').length) {
             slider
                 .on('init', function () {
                     var active = $(this).find('.slick-active');

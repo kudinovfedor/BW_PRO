@@ -171,12 +171,22 @@ img {
 .section {
     &-box {
         position: relative;
-        padding: 50px 0;
         min-height: 100vh;
 
         & + & {
             border-top: 1px solid rgba(#fff, .4);
         }
+    }
+}
+
+.section-box {
+    padding-top: 80px;
+    padding-bottom: 50px;
+}
+
+.home {
+    .section-box {
+        padding: 50px 0;
     }
 }
 
@@ -189,13 +199,19 @@ img {
     position: fixed;
 }
 
+.substrate {
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+    background-color: rgba(#000, .8);
+}
+
 .top-edge,
 .bottom-edge {
     left: 0;
     right: 0;
     z-index: 10;
     padding: 15px;
-    background-color: rgba(#000, .2);
+    transition: .2s ease-in-out;
 }
 
 .top-edge {
@@ -567,16 +583,16 @@ img {
 @media only screen and (min-width: 1366px) {
     .top-edge,
     .bottom-edge {
-        background-color: transparent;
-        padding: 0 100px;
+        padding-left: 100px;
+        padding-right: 100px;
     }
 
-    .top-edge {
-        padding-top: 50px;
-    }
-
-    .bottom-edge {
-        padding-bottom: 50px;
+    .home {
+        .top-edge,
+        .bottom-edge {
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
     }
 
     .logo-img {

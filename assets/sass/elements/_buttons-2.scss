@@ -33,7 +33,7 @@
 
     &.button-inverse {
         background: $buttonOutlinedFirstColor;
-        color: $buttonOutlinedSecondColor;
+        color: $buttonFontColorActive;
         &:hover, &:active {
             color: $buttonOutlinedFirstColor;
             background: $buttonOutlinedSecondColor;

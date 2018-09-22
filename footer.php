@@ -1,5 +1,6 @@
 <?php if (!is_front_page()) { ?>
-    </div><!-- .page-wrapper end-->
+    </div>
+</div><!-- .page-wrapper end-->
 <?php } ?>
 
 <?php /*

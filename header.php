@@ -95,6 +95,7 @@
 
     <?php if (!is_front_page() && !is_post_type_archive('portfolio') && !is_tax('portfolio-category')) { ?>
     <div class="page-wrapper container">
+        <section class="section-box">
         <?php } ?>
 
         <?php /*
