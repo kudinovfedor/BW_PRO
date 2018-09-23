@@ -19,13 +19,12 @@
                 <ul class="filter-list text-center text-uppercase">
                     <?php foreach ($categories as $category) {
                         $category_id = $category->term_id;
-                        $plural = get_metadata('term', $category->term_id, 'bw_name-plural', true);
                         $is_current = $current_category_id === $category_id ? 'is-current' : '';
                         ?>
                         <li class="filter-item">
                             <a class="filter-link <?php echo esc_attr($is_current); ?>"
                                href=" <?php echo esc_url(get_category_link($category->term_id)); ?>">
-                                <?php echo esc_html(!empty($plural) ? $plural : $category->name); ?>
+                                <?php echo esc_html($category->name); ?>
                             </a>
                         </li>
                     <?php } ?>
@@ -43,7 +42,9 @@
                     $link_url = function_exists('rwmb_meta') ? rwmb_meta('bw-portfolio-url') : '#';
                     $cat_names = [];
                     foreach ($categories as $category) {
-                        $cat_names[] = $category->name;
+                        $singular = get_metadata('term', $category->term_id, 'bw_name-singular', true);
+                        $name = !empty($singular) ? $singular : $category->name;
+                        $cat_names[] = $name;
                     }
                     ?>
                     <div class="portfolio-item"

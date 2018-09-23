@@ -81,13 +81,11 @@ if (function_exists('pll_e')) { ?>
                 if (count($categories)) { ?>
                     <div class="container filter">
                         <ul class="filter-list text-center text-uppercase">
-                            <?php foreach ($categories as $category) {
-                                $plural = get_metadata('term', $category->term_id, 'bw_name-plural', true);
-                                ?>
+                            <?php foreach ($categories as $category) { ?>
                                 <li class="filter-item">
                                     <a href="<?php echo esc_url(get_category_link($category->term_id)); ?>"
                                        class="filter-link">
-                                        <?php echo esc_html(!empty($plural) ? $plural : $category->name); ?>
+                                        <?php echo esc_html($category->name); ?>
                                     </a>
                                 </li>
                             <?php } ?>
@@ -105,7 +103,9 @@ if (function_exists('pll_e')) { ?>
                             $link_url = function_exists('rwmb_meta') ? rwmb_meta('bw-portfolio-url') : '#';
                             $cat_names = [];
                             foreach ($categories as $category) {
-                                $cat_names[] = $category->name;
+                                $singular = get_metadata('term', $category->term_id, 'bw_name-singular', true);
+                                $name = !empty($singular) ? $singular : $category->name;
+                                $cat_names[] = $name;
                             }
                             ?>
                             <div>

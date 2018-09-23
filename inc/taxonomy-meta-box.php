@@ -128,10 +128,10 @@ function register_additional_term_fields()
         'taxonomy' => array('portfolio-category'),
         'args' => array(
             array(
-                'id' => 'name-plural', // attr name and id without prefix, result "bw_name-plural"
-                'title' => 'Plural',
+                'id' => 'name-singular', // attr name and id without prefix, result "bw_name-singular"
+                'title' => 'Singular',
                 'type' => 'text',
-                'desc' => 'Plural name is how it appears on your site.',
+                'desc' => 'Singular name is how it appears on your site.',
                 'std' => '',
             ),
         )
