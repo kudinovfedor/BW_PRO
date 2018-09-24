@@ -44,7 +44,8 @@ if (function_exists('pll_e')) { ?>
                     <?php } ?>
                 </ul>
                 <div class="text-center">
-                    <button class="btn btn-primary btn-special btn-shadow js-make-order" type="button">
+                    <button class="btn btn-primary btn-special btn-shadow <?php the_lang_class('js-make-order'); ?>"
+                            type="button">
                         <?php pll_e(get_theme_mod('bw_section_hero_btn_label', 'Сделать заказ')); ?>
                     </button>
                 </div>
@@ -189,7 +190,7 @@ if (function_exists('pll_e')) { ?>
                         <?php } ?>
                     </ul>
                 </div>
-                <?php if ($shortcode = get_theme_mod('bw_section_contact_shortcode')) { ?>
+                <?php if ($shortcode = pll__(get_theme_mod('bw_section_contact_shortcode'))) { ?>
                     <div class="form form-box">
                         <?php echo do_shortcode($shortcode); ?>
                     </div>
