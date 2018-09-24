@@ -418,6 +418,10 @@ if (function_exists('pll_register_string')) {
             'name' => 'Contact Item Email [3]',
             'theme-mod' => 'bw_section_contact_item3_email',
         ),
+        array(
+            'name' => 'Contact Form Shortcode',
+            'theme-mod' => 'bw_section_contact_shortcode',
+        ),
     );
 
     foreach ($strings as $item) {

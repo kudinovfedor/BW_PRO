@@ -2,7 +2,7 @@
 
 <div class="section-box" id="section-two">
     <div class="portfolio">
-        <h1 class="page-name"><?php the_archive_title(); ?></h1>
+        <h1 class="page-name"><?php single_term_title(); ?></h1>
         <?php
         $category = get_queried_object();
         $current_category_id = $category->term_id;
