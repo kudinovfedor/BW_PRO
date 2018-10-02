@@ -5657,7 +5657,7 @@ hr.style-one {
 hr.style-two {
   border: 0;
   height: 1px;
-  background-image: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.75), transparent); }
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0)); }
 
 hr.style-three {
   padding: 0;
@@ -6104,7 +6104,7 @@ hr.style-four {
     text-decoration: none; }
   .social-item, .social-link {
     font-size: 18px;
-    line-height: 1; }
+    line-height: 1.5; }
 
 .messenger, .messenger-item {
   display: inline-block;
@@ -6130,7 +6130,7 @@ hr.style-four {
   .lang-item,
   .lang-item a {
     font-size: 18px;
-    line-height: 1; }
+    line-height: 1.5; }
   .lang-item a {
     display: block; }
 
@@ -6294,10 +6294,6 @@ img {
 .home .section-box {
   padding: 50px 0; }
 
-.logo-img {
-  width: 64px;
-  height: 40px; }
-
 .is-fixed {
   position: fixed; }
 
@@ -6392,7 +6388,7 @@ img {
 
 .service-list {
   margin: 0;
-  padding: 0 0 120px;
+  padding: 60px 0 120px;
   list-style: none;
   overflow: hidden; }
   .service-list-sm {
@@ -6596,10 +6592,7 @@ img {
   .home .top-edge,
   .home .bottom-edge {
     padding-top: 50px;
-    padding-bottom: 50px; }
-  .logo-img {
-    width: 105px;
-    height: 63px; } }
+    padding-bottom: 50px; } }
 
 @media only screen and (max-width: 1400px) {
   .without-js .portfolio-item {
@@ -6620,6 +6613,7 @@ img {
     padding-top: 40px;
     padding-bottom: 40px; }
   .service-list {
+    padding-top: 0;
     padding-bottom: 40px; } }
 
 @media only screen and (max-width: 768px) {

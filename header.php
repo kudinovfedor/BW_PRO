@@ -36,7 +36,7 @@
 
             } else {
 
-                $logo = '<svg class="logo-img" width="105" height="63" fill="#fff"><use xlink:href="#logo"></use></svg>';
+                $logo = '<svg class="logo-img" width="64" height="40" fill="#fff"><use xlink:href="#logo"></use></svg>';
 
                 $link = sprintf('<a class="logo-link" href="%s">%s</a>', esc_url(home_url('/')), $logo);
 
