@@ -291,14 +291,15 @@ img {
     }
 
     h2 {
-        padding: 60px 0;
+        //padding: 60px 0;
         margin-bottom: 0;
         @include responsive-font-size(22px, 32px, 480px, 1024px, 26px);
     }
 
     &-list {
         margin: 0;
-        padding: 60px 0 120px;
+        padding: 0;
+        //padding: 60px 0 120px;
         list-style: none;
         overflow: hidden;
 
@@ -575,6 +576,19 @@ img {
     }
 }
 
+.pt-0 {
+    padding-top: 0 !important;
+}
+
+.pb-0 {
+    padding-bottom: 0 !important;
+}
+
+.py-0 {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
 @media only screen and (min-width: 1366px) {
     .top-edge,
     .bottom-edge {
@@ -620,13 +634,13 @@ img {
 @media only screen and (max-height: 900px) {
     .service {
         h2 {
-            padding-top: 40px;
-            padding-bottom: 40px;
+            //padding-top: 40px;
+            //padding-bottom: 40px;
         }
 
         &-list {
-            padding-top: 0;
-            padding-bottom: 40px;
+            //padding-top: 0;
+            //padding-bottom: 40px;
         }
     }
 
@@ -663,11 +677,11 @@ img {
 
     .service {
         h2 {
-            padding: 40px 0;
+            //padding: 40px 0;
         }
 
         &-list {
-            padding-bottom: 40px;
+            //padding-bottom: 40px;
 
             &-sm {
                 padding: 20px 0;
@@ -741,7 +755,7 @@ img {
 
     .service {
         h2 {
-            padding: 30px 0;
+            //padding: 30px 0;
         }
 
         &-item {

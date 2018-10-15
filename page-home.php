@@ -23,12 +23,15 @@ $services = array(
 );
 
 if (function_exists('pll_e')) { ?>
-    <section class="section-box">
+    <section class="section-box pt-0">
+        <div class="sp-xs-2 sp-sm-2 sp-md-2 sp-lg-2 sp-xl-2"></div>
         <div class="container">
             <div class="service text-center">
                 <h1 class="page-name"><?php pll_e(get_theme_mod('bw_section_hero_title', 'Разработка сайтов')); ?></h1>
+                <div class="sp-xs-2 sp-sm-2 sp-md-2 sp-lg-2 sp-xl-2"></div>
                 <h2><?php pll_e(get_theme_mod('bw_section_hero_subtitle',
                         'Профессиональное решение для Вашего бизнеса')); ?></h2>
+                <div class="sp-xs-2 sp-sm-2 sp-md-2 sp-lg-2 sp-xl-2"></div>
                 <ul class="service-list text-center text-uppercase">
                     <?php foreach ($services as $key => $item) { ?>
                         <li class="service-item">
@@ -43,6 +46,7 @@ if (function_exists('pll_e')) { ?>
                         </li>
                     <?php } ?>
                 </ul>
+                <div class="sp-xs-2 sp-sm-2 sp-md-2 sp-lg-2 sp-xl-2"></div>
                 <div class="text-center">
                     <button class="btn btn-primary btn-special btn-shadow <?php the_lang_class('js-make-order'); ?>"
                             type="button">

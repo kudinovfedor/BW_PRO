@@ -162,6 +162,10 @@ select {
         border-radius: 0;
         @extend %smooth_animation;
 
+        option {
+            color: #333;
+        }
+
         &:focus {
             box-shadow: 0 0 0 3px rgba(#fff, .2);
             border-color: #acabaf;
